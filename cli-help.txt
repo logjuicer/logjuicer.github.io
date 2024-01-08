@@ -1,0 +1,21 @@
+A command line to extract anomaly from log files.
+
+Usage: logjuicer [OPTIONS] <COMMAND>
+
+Commands:
+  diff         Compare targets
+  path         Analyze a path
+  url          Analyze a url
+  journald     Analyze systemd-journal
+  zuul-build   When running in CI, analyze the current build
+  train        Train a model
+  test         Evaluate datasets from the logjuicer-tests project
+  check-model  Check a pre-built model
+  read-report  Read a report
+
+Options:
+      --config <FILE>    LogJuicer configuration
+      --report <REPORT>  Create an html report
+      --model <FILE>     Load or save the model
+  -h, --help             Print help
+  -V, --version          Print version

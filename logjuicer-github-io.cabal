@@ -1,0 +1,23 @@
+cabal-version:      3.4
+name:               logjuicer-github-io
+version:            0.1
+license:            Apache-2.0
+license-file:       LICENSE
+author:             Tristan Cacqueray
+maintainer:         tdecacqu@redhat.com
+category:           Web
+build-type:         Simple
+extra-doc-files:    CHANGELOG.md
+
+common warnings
+    ghc-options: -Wall
+
+executable logjuicer-github-io
+    import:           warnings
+    main-is:          Main.hs
+    build-depends:    base,
+                      hakyll,
+                      pandoc,
+                      pandoc-types
+    hs-source-dirs:   .
+    default-language: GHC2021

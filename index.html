@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>LogJuicer</title>
+        <style>
+
+html {
+  color: #111;
+  background-color: #dcd7c2;
+}
+
+body {
+  background-color: #fdfdfd;
+  max-width: 42em;
+  margin:50px auto;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
+}
+
+header {
+  text-align: center;
+  background-color: #94b8b1;
+  padding: 50px 0;
+  display: flex;
+  flex-direction: row;
+  place-content: center;
+}
+
+article {
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+footer {
+  font-size: 0.6em;
+  padding: 5px 10px;
+  background-color: #8fcbb7;
+  text-align: right;
+}
+
+p {
+  margin: 1em 0;
+}
+
+a {
+  color: #061c4d;
+}
+a:visited {
+  color: #040c2d;
+}
+a:hover {
+  color: #0a6a91;
+}
+img {
+  max-width: 100%;
+}
+svg {
+  height: auto;
+  max-width: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 1.4em;
+}
+h5, h6 {
+  font-size: 1em;
+  font-style: italic;
+}
+h6 {
+  font-weight: normal;
+}
+ol, ul {
+  padding-left: 1.7em;
+  margin-top: 1em;
+}
+li > ol, li > ul {
+  margin-top: 0;
+}
+blockquote {
+  margin: 0.5em 1em;
+  padding-left: 1em;
+  border-left: 2px solid #e6e6e6;
+  color: #606060;
+}
+code {
+  font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+  font-size: 85%;
+  margin: 0;
+  hyphens: manual;
+}
+pre {
+  margin: 1em 0;
+  overflow: auto;
+}
+pre code {
+  display: block;
+  padding: 10px 7px;
+  font-size: 11px;
+  overflow-wrap: normal;
+  background-color: #001118;
+  color: #fff;
+  font-weight: 600;
+}
+code::selection {
+  background: #0080FF;
+  text-shadow: none;
+}
+.sourceCode {
+ background-color: transparent;
+ overflow: visible;
+}
+hr {
+  background-color: #1a1a1a;
+  border: none;
+  height: 1px;
+  margin: 1em 0;
+}
+table {
+  margin: 1em 0;
+  border-collapse: collapse;
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+table caption {
+  margin-bottom: 0.75em;
+}
+tbody {
+  margin-top: 0.5em;
+  border-top: 1px solid #1a1a1a;
+  border-bottom: 1px solid #1a1a1a;
+}
+th {
+  border-top: 1px solid #1a1a1a;
+  padding: 0.25em 0.5em 0.25em 0.5em;
+}
+td {
+  padding: 0.125em 0.5em 0.25em 0.5em;
+}
+
+#TOC li {
+  list-style: none;
+}
+#TOC ul {
+  padding-left: 1.3em;
+}
+#TOC > ul {
+  padding-left: 0;
+}
+#TOC a:not(:hover) {
+  text-decoration: none;
+}
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+/* The extra [class] is a hack that increases specificity enough to
+   override a similar rule in reveal.js */
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  font-size: inherit;
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+
+#brand {
+  font-size: 2em;
+  font-weight: 800;
+  font-family: "Helvetica Neue", sans-serif;
+  font-stretch: 5px;
+  letter-spacing: .4rem;
+
+}
+
+        </style>
+    </head>
+    <body>
+        <header>
+            <span id="brand">LOGJUICER</span>
+        </header>
+
+        <article>
+            <h1 id="logjuicer-extracts-anomalies-from-log-files">LogJuicer Extracts Anomalies From Log Files</h1>
+<p>Based on baseline logs, LogJuicer highlights useful texts in target logs.
+The goal is to save time in finding failures’ root causes.</p>
+<h3 id="how-it-works"><a href="#how-it-works" class="anchor">§</a> How it works</h3>
+<p>LogJuicer implements a custom diffing process to compare logs:</p>
+<ul>
+<li>A tokenizer removes random words.</li>
+<li>Lines are converted into feature vectors using the hashing trick.</li>
+<li>The logs are compared using cosine similarity.</li>
+</ul>
+<h3 id="install"><a href="#install" class="anchor">§</a> Install</h3>
+<p>Install the <code>logjuicer</code> command line by running:</p>
+<pre><code>$ cargo install --git https://github.com/logjuicer/logjuicer logjuicer-cli</code></pre>
+<blockquote>
+<p>If you don’t have <code>cargo</code>, see this <a href="https://www.rust-lang.org/tools/install">install rust</a> documentation.</p>
+</blockquote>
+<p>Or grab the latest release assets <code>logjuicer-x86_64-linux.tar.bz2</code> from <a href="https://github.com/logjuicer/logjuicer/releases" class="uri">https://github.com/logjuicer/logjuicer/releases</a></p>
+<h3 id="use"><a href="#use" class="anchor">§</a> Use</h3>
+<p>Analyze a local file:</p>
+<pre class="shellsession"><code>$ logjuicer file /var/log/zuul/scheduler.log</code></pre>
+<p>Analyze a remote url:</p>
+<pre class="shellsession"><code>$ logjuicer url https://zuul/build/uuid</code></pre>
+<p>Compare two inputs (when baseline discovery doesn’t work):</p>
+<pre class="shellsession"><code>$ logjuicer diff https://zuul/build/success-build https://zuul/build/failed-build</code></pre>
+<p>Save and re-use trained model using the <code>--model file-path</code> argument.</p>
+<h3 id="configure"><a href="#configure" class="anchor">§</a> Configure</h3>
+<p>LogJuicer supports the <a href="https://ant.apache.org/manual/Types/fileset.html">ant’s fileset</a> configuration to
+filter the processed files:</p>
+<ul>
+<li><em>includes</em>: list of files regex that must be included. Defaults to all files.</li>
+<li><em>excludes</em>: list of files regex that must be excluded. Defaults to default excludes or none if <code>default_excludes</code> is false.</li>
+<li><em>default_excludes</em>: indicates whether <a href="./crates/model/src/config/default_excludes.rs">default excludes</a> should be used or not.</li>
+</ul>
+<h3 id="learn"><a href="#learn" class="anchor">§</a> Learn</h3>
+<p>To read more about the project:</p>
+<ul>
+<li>Initial presentation <a href="https://opensource.com/article/18/9/quiet-log-noise-python-and-machine-learning">blog post</a></li>
+<li>The command line specification: <a href="./doc/adr/0001-architecture-cli.md">./doc/adr/0001-architecture-cli.md</a></li>
+<li>How the tokenizer works: <a href="https://www.softwarefactory-project.io/improving-logreduce-with-rust.html">Improving LogJuicer Tokenizer</a></li>
+<li>How the nearest neighbor works: <a href="https://www.softwarefactory-project.io/implementing-logreduce-nearest-neighbors-model-in-rust.html">Implementing LogJuicer Nearest Neighbors</a></li>
+<li>How the log file iterator works: <a href="https://www.softwarefactory-project.io/introducing-the-byteslines-iterator.html">Introducing the BytesLines Iterator</a></li>
+<li><a href="https://www.softwarefactory-project.io/completing-the-first-release-of-logreduce-rust.html">Completing the first release of LogJuicer</a></li>
+<li>How the web interface works: <a href="https://www.softwarefactory-project.io/logreduce-wasm-based-web-interface.html">WASM based web interface</a></li>
+<li>The report file format: <a href="https://www.softwarefactory-project.io/leveraging-capn-proto-for-logreduce-reports.html">Leveraging Cap’n Proto For LogJuicer Reports</a></li>
+</ul>
+<h3 id="contribute"><a href="#contribute" class="anchor">§</a> Contribute</h3>
+<p>Clone the project and run tests:</p>
+<pre><code>git clone https://github.com/logjuicer/logjuicer &amp;&amp; cd logjuicer
+cargo test &amp;&amp; cargo fmt &amp;&amp; cargo clippy</code></pre>
+<p>Run the project:</p>
+<pre><code>cargo run -p logjuicer-cli -- --help</code></pre>
+<p>Activate tracing debug:</p>
+<pre><code>export LOGJUICER_LOG=&quot;logjuicer_model=debug,logjuicer_cli=debug&quot;
+# Create a chrome trace that can be viewed in web browser with `chrome://tracing`
+export LOGJUICER_TRACE=./chrome.trace</code></pre>
+<p>Join the project Matrix room: <a href="https://matrix.to/#/#logjuicer:matrix.org">#logjuicer:matrix.org</a>.</p>
+<h3 id="roadmap"><a href="#roadmap" class="anchor">§</a> Roadmap</h3>
+<ul>
+<li>Detect <code>jenkins</code> url</li>
+<li>Reports minification</li>
+<li>Web service deployment</li>
+</ul>
+        </article>
+        <footer>
+            This work is licensed under a
+            <a href="http://creativecommons.org/licenses/by/4.0/">
+              Creative Commons Attribution 4.0 International License
+            </a>.
+            Site proudly generated by
+            <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+        </footer>
+    </body>
+</html>

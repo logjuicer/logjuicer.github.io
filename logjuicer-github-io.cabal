@@ -18,6 +18,7 @@ executable logjuicer-github-io
     build-depends:    base,
                       hakyll,
                       pandoc,
-                      pandoc-types
+                      pandoc-types,
+                      text
     hs-source-dirs:   .
     default-language: GHC2021

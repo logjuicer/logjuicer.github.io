@@ -48,7 +48,7 @@
         packages.website = website;
         devShell = hsPkgs.shellFor {
           packages = p: [ p.logjuicer-github-io ];
-          buildInputs = [ pkgs.cabal-install genSources ];
+          buildInputs = [ pkgs.cabal-install genSources pkgs.pandoc ];
         };
       });
 }

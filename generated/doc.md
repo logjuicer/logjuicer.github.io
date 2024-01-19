@@ -98,11 +98,4 @@ export LOGJUICER_TRACE=./chrome.trace
 
 Join the project Matrix room: [#logjuicer:matrix.org](https://matrix.to/#/#logjuicer:matrix.org).
 
-
-## Roadmap
-
-* Detect `jenkins` url
-* Reports minification
-* Web service deployment
-
 [logjuicer]: https://github.com/logjuicer/logjuicer

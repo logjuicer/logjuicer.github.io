@@ -2,7 +2,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Main where
 
-import Data.Monoid (mappend)
+import Data.Text (pack)
 import Hakyll
 import Text.Pandoc
 import Text.Pandoc.Walk
@@ -17,15 +17,15 @@ addSectionLinks = walk f
          in Header (n + 1) attr ([link, Space] <> inlines)
     f x = x
 
-customCompiler :: Compiler (Item String)
-customCompiler =
-  pandocCompilerWithTransform defaultHakyllReaderOptions defaultHakyllWriterOptions addSectionLinks
+addUsage :: String -> Pandoc -> Pandoc
+addUsage usage (Pandoc meta blocks) = Pandoc meta (concatMap f blocks)
+  where
+    f x@(Header _ ("configure", _, _) _) = [CodeBlock ("", ["shellsession"], []) (pack usage), x]
+    f x = [x]
 
-pageCtx :: String -> Context String
-pageCtx usage =
-    dateField "date" "%B %e, %Y" `mappend`
-    constField "usage" usage `mappend`
-    defaultContext
+customCompiler :: String -> Compiler (Item String)
+customCompiler usage =
+  pandocCompilerWithTransform defaultHakyllReaderOptions defaultHakyllWriterOptions (addSectionLinks . addUsage usage)
 
 --------------------------------------------------------------------------------
 main :: IO ()
@@ -38,9 +38,10 @@ main = hakyll do
     compile compressCssCompiler
   match "generated/doc.md" do
     route $ constRoute "index.html"
-    compile $
-      customCompiler
-        >>= loadAndApplyTemplate "templates/default.html" (pageCtx "--help")
+    compile do
+      usage <- itemBody <$> load "generated/cli-help.txt"
+      customCompiler usage
+        >>= loadAndApplyTemplate "templates/default.html" defaultContext
         >>= relativizeUrls
 
   -- create ["index.html"] do

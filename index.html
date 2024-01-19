@@ -15,7 +15,7 @@ html {
 body {
   background-color: #fdfdfd;
   max-width: 42em;
-  margin:50px auto;
+  margin: 0px auto;
   hyphens: auto;
   overflow-wrap: break-word;
   text-rendering: optimizeLegibility;
@@ -180,14 +180,12 @@ ul.task-list li input[type="checkbox"] {
   letter-spacing: .4rem;
 
 }
-
         </style>
     </head>
     <body>
         <header>
             <span id="brand">LOGJUICER</span>
         </header>
-
         <article>
             <h1 id="logjuicer-extracts-anomalies-from-log-files">LogJuicer Extracts Anomalies From Log Files</h1>
 <p>Based on baseline logs, LogJuicer highlights useful texts in target logs.
@@ -214,6 +212,28 @@ The goal is to save time in finding failures’ root causes.</p>
 <p>Compare two inputs (when baseline discovery doesn’t work):</p>
 <pre class="shellsession"><code>$ logjuicer diff https://zuul/build/success-build https://zuul/build/failed-build</code></pre>
 <p>Save and re-use trained model using the <code>--model file-path</code> argument.</p>
+<pre class="shellsession"><code>A command line to extract anomaly from log files.
+
+Usage: logjuicer [OPTIONS] &lt;COMMAND&gt;
+
+Commands:
+  diff         Compare targets
+  path         Analyze a path
+  url          Analyze a url
+  journald     Analyze systemd-journal
+  zuul-build   When running in CI, analyze the current build
+  train        Train a model
+  test         Evaluate datasets from the logjuicer-tests project
+  check-model  Check a pre-built model
+  read-report  Read a report
+
+Options:
+      --config &lt;FILE&gt;    LogJuicer configuration
+      --report &lt;REPORT&gt;  Create an html report
+      --model &lt;FILE&gt;     Load or save the model
+  -h, --help             Print help
+  -V, --version          Print version
+</code></pre>
 <h3 id="configure"><a href="#configure" class="anchor">§</a> Configure</h3>
 <p>LogJuicer supports the <a href="https://ant.apache.org/manual/Types/fileset.html">ant’s fileset</a> configuration to
 filter the processed files:</p>
@@ -245,12 +265,6 @@ cargo test &amp;&amp; cargo fmt &amp;&amp; cargo clippy</code></pre>
 # Create a chrome trace that can be viewed in web browser with `chrome://tracing`
 export LOGJUICER_TRACE=./chrome.trace</code></pre>
 <p>Join the project Matrix room: <a href="https://matrix.to/#/#logjuicer:matrix.org">#logjuicer:matrix.org</a>.</p>
-<h3 id="roadmap"><a href="#roadmap" class="anchor">§</a> Roadmap</h3>
-<ul>
-<li>Detect <code>jenkins</code> url</li>
-<li>Reports minification</li>
-<li>Web service deployment</li>
-</ul>
         </article>
         <footer>
             This work is licensed under a

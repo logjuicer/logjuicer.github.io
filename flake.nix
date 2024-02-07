@@ -20,7 +20,9 @@
 
         genSources = pkgs.writeScriptBin "gen-sources" ''
           mkdir -p generated
+          # todo: rewrite the <img> logo
           cat ${inputs.logjuicer}/README.md > generated/doc.md
+          cp ${inputs.logjuicer}/doc/LogJuicer.svg generated/
           ${inputs.logjuicer.defaultPackage.x86_64-linux}/bin/logjuicer --help > generated/cli-help.txt
           ${inputs.logjuicer.defaultPackage.x86_64-linux}/bin/logjuicer --version > generated/cli-version.txt
         '';

@@ -1,3 +1,5 @@
+![](./LogJuicer.svg){.logo}
+
 # LogJuicer Extracts Anomalies From Log Files
 
 Based on baseline logs, LogJuicer highlights useful texts in target logs.

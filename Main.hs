@@ -31,11 +31,11 @@ customCompiler usage =
 main :: IO ()
 main = hakyll do
   match "templates/*" $ compile templateCompiler
+  match "generated/LogJuicer.svg" $ do
+    route $ constRoute "LogJuicer.svg"
+    compile copyFileCompiler
   match "generated/*.txt" do
     compile getResourceBody
-  match "css/*" $ do
-    route idRoute
-    compile compressCssCompiler
   match "generated/doc.md" do
     route $ constRoute "index.html"
     compile do
@@ -43,11 +43,3 @@ main = hakyll do
       customCompiler usage
         >>= loadAndApplyTemplate "templates/default.html" defaultContext
         >>= relativizeUrls
-
-  -- create ["index.html"] do
-  --   route idRoute
-  --   compile do
-  --     doc <- load "generated/doc.md"
-  --     customCompiler
-  --       >>= loadAndApplyTemplate "templates/default.html" (pageCtx itemBody doc)
-  --       >>= relativizeUrls

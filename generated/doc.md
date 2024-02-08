@@ -5,6 +5,8 @@
 Based on baseline logs, LogJuicer highlights useful texts in target logs.
 The goal is to save time in finding failures' root causes.
 
+<center><iframe width="700" height="540" src="https://www.youtube.com/embed/n9oEzlhr5Dc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
+
 
 ## How it works
 

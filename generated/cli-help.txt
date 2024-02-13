@@ -6,16 +6,13 @@ Commands:
   diff         Compare targets
   path         Analyze a path
   url          Analyze a url
-  journald     Analyze systemd-journal
-  zuul-build   When running in CI, analyze the current build
   train        Train a model
-  test         Evaluate datasets from the logjuicer-tests project
   check-model  Check a pre-built model
-  read-report  Read a report
+  test         Evaluate datasets
 
 Options:
       --config <FILE>    LogJuicer configuration
-      --report <REPORT>  Create an html report
+      --report <REPORT>  Save the report
       --model <FILE>     Load or save the model
   -h, --help             Print help
   -V, --version          Print version
